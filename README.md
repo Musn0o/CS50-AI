@@ -1,60 +1,136 @@
-# 🎓 CS50’s Introduction to Artificial Intelligence with Python
+# CS50 AI: Introduction to Artificial Intelligence with Python
 
-This repository contains my personal progress and solutions for [CS50's AI course by Harvard University](https://cs50.harvard.edu/ai/). The course provides an excellent foundation in core AI concepts using Python, including search, knowledge representation, probabilistic inference, machine learning, and neural networks.
+Welcome to my CS50 AI journey! This repository documents my complete learning experience through Harvard's CS50 Introduction to Artificial Intelligence with Python course.
 
----
+## 🎯 Course Overview
 
-## 📌 Course Overview
+This course explores the concepts and algorithms at the foundation of modern artificial intelligence, diving into the ideas that give rise to technologies like game-playing engines, handwriting recognition, and machine translation.
 
-| Week | Topic | Projects |
-|------|-------|----------|
-| 0 | Search | Degrees, Tic Tac Toe |
-| 1 | Knowledge | Knights, Minesweeper |
-| 2 | Uncertainty | Heredity |
-| 3 | Learning | Shopping, Nearest Neighbors |
-| 4 | Neural Networks | Traffic Sign Recognition |
+## 📚 Course Structure
 
----
+### ✅ Week 0: Search
 
-## ✅ Completed Projects
+**Concepts:** Search problems, algorithms, optimization
 
-- [x] Lecture 0: Search – `degrees/`, `tictactoe/`
-- [ ] Lecture 1: Knowledge – `knights/`, `minesweeper/`
-- [ ] Lecture 2: Uncertainty – `heredity/`
-- [ ] Lecture 3: Learning – `shopping/`, `nearest/`
-- [ ] Lecture 4: Neural Networks – `traffic/`
+- **Lecture Notes:** Week 0 Notes
+- **Projects:**
+    - Degrees - Six degrees of separation using BFS
+    - Tic-Tac-Toe - Optimal play using Minimax
 
----
+### ✅ Week 1: Knowledge
 
-## 🗒️ Personal Notes
+**Concepts:** Knowledge representation, logical reasoning, inference
 
-You can find my summaries and observations for each lecture in the [`notes/`](./notes/) folder.
+- **Lecture Notes:** Week 1 Notes
+- **Projects:**
+    - Knights - Logic puzzles using propositional logic
+    - Minesweeper - AI agent using logical inference
 
----
+### 🔄 Week 2: Uncertainty
 
-## 🚀 How to Run
+**Concepts:** Probability, Bayesian networks, sampling
 
-Most of the projects can be run with:
+- **Lecture Notes:** Week 2 Notes
+- **Projects:**
+    - PageRank - Google's PageRank algorithm
+    - Heredity - Genetic inheritance probabilities
 
-```bash
-python filename.py
-```
+### 🔄 Week 3: Optimization
 
-Make sure you're using Python 3.8+ and install any required packages with:
+**Concepts:** Local search, linear programming, constraint satisfaction
 
-pip install -r requirements.txt
+- **Lecture Notes:** Week 3 Notes
+- **Projects:**
+    - Crossword - Crossword puzzle generator
 
----
+### 🔄 Week 4: Learning
 
-## 📖 License
+**Concepts:** Machine learning, supervised learning, reinforcement learning
 
-This repo is for educational purposes. The original course content belongs to Harvard / CS50.
+- **Lecture Notes:** Week 4 Notes
+- **Projects:**
+    - Shopping - Predicting shopping behavior
+    - Nim - AI that learns to play Nim
 
+### 🔄 Week 5: Neural Networks
 
----
+**Concepts:** Neural networks, deep learning, TensorFlow
 
-## 🙋‍♂️ Author
+- **Lecture Notes:** Week 5 Notes
+- **Projects:**
+    - Traffic - Traffic sign recognition using CNN
 
-Mustafa Askar
+### 🔄 Week 6: Language
+
+**Concepts:** Natural language processing, syntax, semantics
+
+- **Lecture Notes:** Week 6 Notes
+- **Projects:**
+    - Parser - Sentence parsing using context-free grammar
+    - Questions - Question answering system
+
+## 🌟 Special Features
+
+- **Bilingual Documentation:** All lecture notes and explanations are written in **Arabic** (العربية), making this repository a valuable resource for Arabic-speaking learners
+- **English Code Implementation:** All code is written in English with clear comments for universal accessibility
+- **Personal Learning Journey:** Each section includes personal insights and reflections on the learning process
+
+## 🛠️ Technologies Used
+
+- **Language:** Python 3.x
+- **Documentation:** Arabic (العربية) for explanations, English for code
+- **Libraries:**
+    - Search algorithms: Custom implementations
+    - Knowledge representation: propositional logic libraries
+    - Machine learning: scikit-learn, TensorFlow, OpenCV
+    - NLP: NLTK, spaCy
+    - Data manipulation: pandas, numpy
+    - Visualization: matplotlib
+
+## 📖 Learning Journey
+
+### Key Insights
+
+- Document major "aha!" moments and breakthroughs
+- Challenges faced and how they were overcome
+- Connections between different AI concepts
+
+### Progress Tracking
+
+- [x] Week 0: Search (Revisiting)
+- [x] Week 1: Knowledge (Revisiting)
+- [ ] Week 2: Uncertainty
+- [ ] Week 3: Optimization
+- [ ] Week 4: Learning
+- [ ] Week 5: Neural Networks
+- [ ] Week 6: Language
+
+## 🎓 Reflection
+
+This section will be updated as I progress through the course, documenting:
+
+- What I learned each week
+- How my understanding of AI evolved
+- Real-world applications I discovered
+- Ideas for future projects
+
+## 🚀 Next Steps
+
+After completing CS50 AI, I plan to:
+
+- [ ] Build a personal AI project combining multiple concepts
+- [ ] Explore advanced topics in machine learning
+- [ ] Contribute to open-source AI projects
+- [ ] Apply AI concepts to solve real-world problems
+
+## 📞 Connect
+
+Feel free to reach out if you have questions about any of the implementations or want to discuss AI concepts!
 
 [GitHub](https://github.com/Musn0o) | [LinkedIn](https://www.linkedin.com/in/mustafa-askar-223551351/) | [🤗 Hugging Face](https://huggingface.co/Musno) | [Kaggle](https://www.kaggle.com/mustafaaskar95)
+
+---
+
+_"The best way to learn is by doing, and the best way to understand is by teaching."_
+
+**Course Link:** [CS50 AI](https://cs50.harvard.edu/ai/) **Started:** 18 Jul 2025 **Status:** 🔄 In Progress
