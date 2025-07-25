@@ -127,7 +127,8 @@ universal_C = And(Or(CKnight, CKnave), Not(And(CKnight, CKnave)))
 A_claims_to_be = Or(AKnight, AKnave)
 
 # B's statement 1 logic: "A said 'I am a knave'."
-b_claims_1 = AKnave
+# This translates to: B claims that (A is a Knight IFF A is a Knave).
+b_claims_1 = Biconditional(AKnight, AKnave)
 
 # B's statement 2 logic: "C is a knave."
 b_claims_2 = CKnave
@@ -142,13 +143,29 @@ knowledge3_A_says_truth_if_knight = Implication(AKnight, A_claims_to_be)
 knowledge3_A_says_false_if_knave = Implication(AKnave, Not(A_claims_to_be))
 
 # Rule: If B is a Knight, then B's statement must be true
-knowledge2_B_says_truth_if_knight = Implication(BKnight, b_claims_both_different)
+knowledge3_B_says_truth_if_knight = Implication(BKnight, And(b_claims_1, b_claims_2))
 
 # Rule: If B is a Knave, then B's statement must be false
-knowledge2_B_says_false_if_knave = Implication(BKnave, Not(b_claims_both_different))
+knowledge3_B_says_false_if_knave = Implication(BKnave, Not(And(b_claims_1, b_claims_2)))
+
+# Rule: If C is a Knight, then C's statement must be true
+knowledge3_C_says_truth_if_knight = Implication(CKnight, c_claims)
+
+# Rule: If C is a Knave, then C's statement must be false
+knowledge3_C_says_false_if_knave = Implication(CKnave, Not(c_claims))
 
 
-knowledge3 = And()
+knowledge3 = And(
+    universal_A,
+    universal_B,
+    universal_C,
+    knowledge3_A_says_truth_if_knight,
+    knowledge3_A_says_false_if_knave,
+    knowledge3_B_says_truth_if_knight,
+    knowledge3_B_says_false_if_knave,
+    knowledge3_C_says_truth_if_knight,
+    knowledge3_C_says_false_if_knave,
+)
 
 
 def main():
