@@ -1,4 +1,4 @@
-from logic import *
+from logic import Symbol, And, Or, Not, Implication, Biconditional, model_check
 
 AKnight = Symbol("A is a Knight")
 AKnave = Symbol("A is a Knave")

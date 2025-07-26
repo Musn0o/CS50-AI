@@ -98,7 +98,7 @@ This course explores the concepts and algorithms at the foundation of modern art
 ### Progress Tracking
 
 - [x] Week 0: Search (Complete)
-- [x] Week 1: Knowledge (Revisiting)
+- [x] Week 1: Knowledge (Complete)
 - [ ] Week 2: Uncertainty
 - [ ] Week 3: Optimization
 - [ ] Week 4: Learning
