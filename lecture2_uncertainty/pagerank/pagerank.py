@@ -6,6 +6,8 @@ import sys
 DAMPING = 0.85
 SAMPLES = 10000
 
+test_corpus = {"A": {"B"}, "B": {"C"}, "C": {"A"}}
+
 
 def main():
     if len(sys.argv) != 2:
@@ -16,7 +18,7 @@ def main():
     for page in sorted(ranks):
         print(f"  {page}: {ranks[page]:.4f}")
     ranks = iterate_pagerank(corpus, DAMPING)
-    print(f"PageRank Results from Iteration")
+    print("PageRank Results from Iteration")
     for page in sorted(ranks):
         print(f"  {page}: {ranks[page]:.4f}")
 
@@ -40,10 +42,7 @@ def crawl(directory):
 
     # Only include links to other pages in the corpus
     for filename in pages:
-        pages[filename] = set(
-            link for link in pages[filename]
-            if link in pages
-        )
+        pages[filename] = set(link for link in pages[filename] if link in pages)
 
     return pages
 
@@ -69,7 +68,35 @@ def sample_pagerank(corpus, damping_factor, n):
     their estimated PageRank value (a value between 0 and 1). All
     PageRank values should sum to 1.
     """
-    raise NotImplementedError
+    # Dictionary to store the counts
+    counts = {page: 0 for page in corpus}
+
+    # A variable to keep track of the current page the surfer is on
+    current_page = None
+
+    # Starting Point
+    current_page = random.choice(list(corpus.keys()))
+
+    # Simulate the surfer's journey for n steps
+    for i in range(n):
+        counts[current_page] += 1
+
+        if random.random() < damping_factor:
+            # The surfer wants to follow a link.
+            links_from_current_page = corpus[current_page]
+            if links_from_current_page:
+                # If there are links on the current page, choose one at random.
+                next_page = random.choice(list(links_from_current_page))
+                current_page = next_page
+        else:
+            # This is a key edge case!
+            # If the page has no outgoing links, the surfer jumps to a random page from the entire corpus.
+            next_page = random.choice(list(corpus.keys()))
+            current_page = next_page
+
+    pagerank = {page: count / n for page, count in counts.items()}
+
+    return pagerank
 
 
 def iterate_pagerank(corpus, damping_factor):
@@ -84,5 +111,7 @@ def iterate_pagerank(corpus, damping_factor):
     raise NotImplementedError
 
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
+pageranks = sample_pagerank(test_corpus, damping_factor=0.85, n=10000)
+print(pageranks)
