@@ -6,8 +6,6 @@ import sys
 DAMPING = 0.85
 SAMPLES = 10000
 
-test_corpus = {"A": {"B"}, "B": {"C"}, "C": {"A"}}
-
 
 def main():
     if len(sys.argv) != 2:
@@ -56,7 +54,30 @@ def transition_model(corpus, page, damping_factor):
     linked to by `page`. With probability `1 - damping_factor`, choose
     a link at random chosen from all pages in the corpus.
     """
-    raise NotImplementedError
+    num_pages = len(corpus)
+    distribution = {}
+
+    # Get the links from the current page
+    links_on_page = corpus[page]
+    num_links = len(links_on_page)
+
+    if num_links > 0:
+        # Probability from the (1 - damping_factor) part, for every page
+        base_prob = (1 - damping_factor) / num_pages
+        # Probability from the damping_factor part, only for linked pages
+        linked_prob = damping_factor / num_links
+
+        for p in corpus:
+            distribution[p] = base_prob
+            if p in links_on_page:
+                distribution[p] += linked_prob
+    else:
+        # If there are no outgoing links, choose any page with equal probability
+        prob_per_page = 1 / num_pages
+        for p in corpus:
+            distribution[p] = prob_per_page
+
+    return distribution
 
 
 def sample_pagerank(corpus, damping_factor, n):
@@ -81,19 +102,21 @@ def sample_pagerank(corpus, damping_factor, n):
     for i in range(n):
         counts[current_page] += 1
 
-        if random.random() < damping_factor:
-            # The surfer wants to follow a link.
-            links_from_current_page = corpus[current_page]
-            if links_from_current_page:
-                # If there are links on the current page, choose one at random.
-                next_page = random.choice(list(links_from_current_page))
-                current_page = next_page
-        else:
-            # This is a key edge case!
-            # If the page has no outgoing links, the surfer jumps to a random page from the entire corpus.
-            next_page = random.choice(list(corpus.keys()))
-            current_page = next_page
+        # Get the outgoing links from the current page
+        links = corpus[current_page]
 
+        # Decide whether to follow a link or jump to a random page
+        if random.random() < damping_factor and links:
+            # With probability 'damping_factor', if the current page has outgoing links,
+            # choose one of them at random to be the next page.
+            current_page = random.choice(list(links))
+        else:
+            # With probability '1 - damping_factor', or if the current page has no links,
+            # choose a random page from the entire corpus to be the next page.
+            # This handles the "dead end" case.
+            current_page = random.choice(list(corpus.keys()))
+    # Normalize these counts.
+    # The PageRank for a page is its count divided by the total number of samples (n).
     pagerank = {page: count / n for page, count in counts.items()}
 
     return pagerank
@@ -108,10 +131,49 @@ def iterate_pagerank(corpus, damping_factor):
     their estimated PageRank value (a value between 0 and 1). All
     PageRank values should sum to 1.
     """
-    raise NotImplementedError
+    num_pages = len(corpus)
+
+    # Initialize pagerank with equal probability for each page
+    pagerank = {page: 1 / num_pages for page in corpus}
+
+    # Convergence threshold
+    threshold = 0.001
+
+    while True:
+        # A dictionary to store the new pagerank values for the current iteration
+        new_pagerank = {}
+
+        # Calculate new PageRank for each page
+        for page in corpus:
+            # First part of the formula: the probability of a random jump
+            new_rank = (1 - damping_factor) / num_pages
+
+            # Second part of the formula: the probability from linked pages
+            sigma = 0
+            for i in corpus:
+                # If page 'i' has links and one of them is to the current 'page'
+                if page in corpus[i]:
+                    sigma += pagerank[i] / len(corpus[i])
+
+                # A page with no links is treated as linking to all pages
+                if not corpus[i]:
+                    sigma += pagerank[i] / num_pages
+
+            new_rank += damping_factor * sigma
+            new_pagerank[page] = new_rank
+
+        # Check for convergence by finding the maximum change in PageRank values
+        max_change = max(abs(new_pagerank[p] - pagerank[p]) for p in corpus)
+
+        # Update pagerank for the next iteration
+        pagerank = new_pagerank
+
+        # If the change is less than the threshold, we have converged
+        if max_change < threshold:
+            break
+
+    return pagerank
 
 
-# if __name__ == "__main__":
-#     main()
-pageranks = sample_pagerank(test_corpus, damping_factor=0.85, n=10000)
-print(pageranks)
+if __name__ == "__main__":
+    main()
