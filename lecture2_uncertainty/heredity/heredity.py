@@ -227,4 +227,3 @@ def normalize(probabilities):
 # update_
 if __name__ == "__main__":
     main()
-_
