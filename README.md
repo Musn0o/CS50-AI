@@ -100,7 +100,7 @@ This course explores the concepts and algorithms at the foundation of modern art
 - [x] Week 0: Search (Complete)
 - [x] Week 1: Knowledge (Complete)
 - [x] Week 2: Uncertainty (Complete)
-- [ ] Week 3: Optimization
+- [x] Week 3: Optimization (Complete)
 - [ ] Week 4: Learning
 - [ ] Week 5: Neural Networks
 - [ ] Week 6: Language
